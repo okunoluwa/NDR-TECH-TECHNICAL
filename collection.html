@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Collection - NDR Tech System</title>
+    <link rel="stylesheet" href="collection.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <link rel="icon" type="image/png" href="image/favicon.png">
+</head>
+<body onload="loadCollectionTickets()">
+    <div class="sidebar">
+        <img src="image/ndr-tech-logo.png" alt="NDR Tech logo" class="brand-logo">
+    <h2 class="logo">NDR TECH TECHNICAL DEPARTMENT SYSTEM
+        </h2>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="tickets.html"><i class="fas fa-ticket"></i> Tickets</a></li>
+            <li><a href="repairs.html"><i class="fas fa-screwdriver-wrench"></i> Repairs</a></li>
+            <li><a href="clients.html"><i class="fas fa-address-book"></i> Clients</a></li>
+                <li><a href="proof.html"><i class="fas fa-camera"></i> Proof of Work</a></li>
+                <li><a href="collection.html" class="active"><i class="fas fa-box"></i> Collection</a></li>
+            <li><a href="management.html"><i class="fas fa-tasks"></i> Management</a></li>
+            <li><a href="stock.html"><i class="fas fa-boxes-stacked"></i> Stock</a></li>
+                <li><a href="finance.html"><i class="fas fa-coins"></i> Finance</a></li>
+            <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+            <li><a href="services.html"><i class="fas fa-toolbox"></i> Services</a></li>
+                <li><a href="settings.html"><i class="fas fa-gear"></i> Settings</a></li>
+            <li><a href="developer.html"><i class="fas fa-code"></i> Dev Tools</a></li>
+            <li onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="header-section">
+            <h1><i class="fas fa-box-open"></i> Ready for Collection</h1>
+            <p>Items waiting for customer pickup</p>
+        </div>
+        <div id="collectionList"></div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="collection.js"></script>
+</body>
+</html>

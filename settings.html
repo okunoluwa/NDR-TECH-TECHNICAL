@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - NDR Tech System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="image/favicon.png">
+</head>
+<body onload="initSettings()">
+    <div class="dashboard">
+        <div class="sidebar">
+            <img src="image/ndr-tech-logo.png" alt="NDR Tech logo" class="brand-logo">
+            <h2 class="logo">NDR TECH TECHNICAL DEPARTMENT SYSTEM</h2>
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tickets.html"><i class="fas fa-ticket"></i> Tickets</a></li>
+                <li><a href="repairs.html"><i class="fas fa-screwdriver-wrench"></i> Repairs</a></li>
+                <li><a href="clients.html"><i class="fas fa-address-book"></i> Clients</a></li>
+                <li><a href="proof.html"><i class="fas fa-camera"></i> Proof of Work</a></li>
+                <li><a href="collection.html"><i class="fas fa-box"></i> Collection</a></li>
+                <li><a href="management.html"><i class="fas fa-tasks"></i> Management</a></li>
+                <li><a href="stock.html"><i class="fas fa-boxes-stacked"></i> Stock</a></li>
+                <li><a href="finance.html"><i class="fas fa-coins"></i> Finance</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="services.html"><i class="fas fa-toolbox"></i> Services</a></li>
+                <li><a href="settings.html" class="active"><i class="fas fa-gear"></i> Settings</a></li>
+                <li><a href="developer.html"><i class="fas fa-code"></i> Dev Tools</a></li>
+                <li onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <h1><i class="fas fa-sliders-h"></i> System Settings</h1>
+                <p>Configure your business preferences</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="settings-tabs">
+                <button class="tab-btn active" onclick="switchTab('profile')"><i class="fas fa-building"></i> Company</button>
+                <button class="tab-btn" onclick="switchTab('account')"><i class="fas fa-user-shield"></i> Account</button>
+                <button class="tab-btn" onclick="switchTab('technicians')"><i class="fas fa-users"></i> Technicians</button>
+                <button class="tab-btn" onclick="switchTab('preferences')"><i class="fas fa-cog"></i> Preferences</button>
+                <button class="tab-btn" onclick="switchTab('backup')"><i class="fas fa-database"></i> Backup</button>
+                <button class="tab-btn" onclick="switchTab('data')"><i class="fas fa-trash-alt"></i> Data</button>
+            </div>
+
+            <!-- Tab Content: Company Profile -->
+            <div id="tab-profile" class="tab-content active">
+                <div class="settings-card">
+                    <h3><i class="fas fa-building"></i> Company Information</h3>
+                    <form id="companyForm">
+                        <div class="form-row">
+                            <input type="text" id="companyName" placeholder="Company Name">
+                            <input type="text" id="ownerName" placeholder="Owner Name">
+                        </div>
+                        <div class="form-row">
+                            <input type="text" id="companyPhone" placeholder="Phone">
+                            <input type="email" id="companyEmail" placeholder="Email">
+                        </div>
+                        <div class="form-row">
+                            <input type="text" id="companyAddress" placeholder="Address">
+                            <input type="text" id="companyTaxId" placeholder="Tax/VAT Number">
+                        </div>
+                        <button type="submit" class="btn-save"><i class="fas fa-save"></i> Save Company Info</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab Content: User Account -->
+            <div id="tab-account" class="tab-content">
+                <div class="settings-card">
+                    <h3><i class="fas fa-key"></i> Change Password</h3>
+                    <form id="passwordForm">
+                        <input type="password" id="currentPassword" placeholder="Current Password">
+                        <input type="password" id="newPassword" placeholder="New Password">
+                        <input type="password" id="confirmPassword" placeholder="Confirm New Password">
+                        <button type="submit" class="btn-save"><i class="fas fa-save"></i> Update Password</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab Content: Technicians Management -->
+            <div id="tab-technicians" class="tab-content">
+                <div class="settings-card">
+                    <h3><i class="fas fa-user-plus"></i> Manage Technicians</h3>
+                    <div class="add-tech">
+                        <input type="text" id="newTechName" placeholder="Technician Name">
+                        <button onclick="addTechnician()"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                    <ul id="technicianList" class="tech-list"></ul>
+                </div>
+            </div>
+
+            <!-- Tab Content: System Preferences -->
+            <div id="tab-preferences" class="tab-content">
+                <div class="settings-card">
+                    <h3><i class="fas fa-coins"></i> Financial Settings</h3>
+                    <div class="form-row">
+                        <label>Default Repair Fee (R)</label>
+                        <input type="number" id="defaultRepairFee" step="50" value="500">
+                    </div>
+                    <div class="form-row">
+                        <label>Currency Symbol</label>
+                        <input type="text" id="currencySymbol" maxlength="3" value="R">
+                    </div>
+                    <button onclick="savePreferences()" class="btn-save"><i class="fas fa-save"></i> Save Preferences</button>
+                </div>
+                <div class="settings-card">
+                    <h3><i class="fas fa-bell"></i> Notifications</h3>
+                    <label><input type="checkbox" id="lowStockAlert"> Enable low stock alerts</label>
+                    <label><input type="checkbox" id="emailNotifications"> Email notifications (future)</label>
+                    <button onclick="saveNotifications()" class="btn-save">Save</button>
+                </div>
+            </div>
+
+            <!-- Tab Content: Backup & Restore -->
+            <div id="tab-backup" class="tab-content">
+                <div class="settings-card">
+                    <h3><i class="fas fa-download"></i> Manual Backup</h3>
+                    <button onclick="exportData()" class="btn-export"><i class="fas fa-download"></i> Export All Data </button>
+                    <button onclick="importData()" class="btn-import"><i class="fas fa-upload"></i> Import Data from File</button>
+                </div>
+                <div class="settings-card">
+                    <h3><i class="fas fa-clock"></i> Automatic Backup</h3>
+                    <label><input type="checkbox" id="autoBackup"> Enable auto backup (daily)</label>
+                    <button onclick="setupAutoBackup()" class="btn-save">Apply</button>
+                    <p class="note">Note: Auto backup saves a copy in browser storage. For real backups, use Export.</p>
+                </div>
+            </div>
+
+            <!-- Tab Content: Data Management -->
+            <div id="tab-data" class="tab-content">
+                <div class="settings-card">
+                    <h3><i class="fas fa-database"></i> Reset / Clear Data</h3>
+                    <button onclick="resetDemoData()" class="btn-warning"><i class="fas fa-sync-alt"></i> Load Demo Data</button>
+                    <button onclick="clearAllData()" class="btn-danger"><i class="fas fa-trash"></i> Clear All Data (WARNING)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html>

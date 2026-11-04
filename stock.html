@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock - NDR Tech System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="modules.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="image/favicon.png">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <img src="image/ndr-tech-logo.png" alt="NDR Tech logo" class="brand-logo"><h2 class="logo">NDR TECH TECHNICAL DEPARTMENT SYSTEM</h2>
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tickets.html"><i class="fas fa-ticket"></i> Tickets</a></li>
+                <li><a href="repairs.html"><i class="fas fa-screwdriver-wrench"></i> Repairs</a></li>
+                <li><a href="clients.html"><i class="fas fa-address-book"></i> Clients</a></li>
+                <li><a href="proof.html"><i class="fas fa-camera"></i> Proof of Work</a></li>
+                <li><a href="collection.html"><i class="fas fa-box"></i> Collection</a></li>
+                <li><a href="management.html"><i class="fas fa-tasks"></i> Management</a></li>
+                <li><a href="stock.html" class="active"><i class="fas fa-boxes-stacked"></i> Stock</a></li>
+                <li><a href="finance.html"><i class="fas fa-coins"></i> Finance</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="services.html"><i class="fas fa-toolbox"></i> Services</a></li>
+                <li><a href="settings.html"><i class="fas fa-gear"></i> Settings</a></li>
+                <li><a href="developer.html"><i class="fas fa-code"></i> Dev Tools</a></li>
+                <li onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <h1><i class="fas fa-boxes-stacked"></i> Stock</h1>
+                <p>Routers, cables and equipment: what you have and what is left</p>
+            </div>
+
+            <div class="m-stats" id="summary"></div>
+            <div class="m-card">
+                <h3><i class="fas fa-bolt"></i> Quick add common items</h3>
+                <p class="m-hint">Tap an item to add it to your stock list, then restock it with the quantity you bought.</p>
+                <div class="m-chips" id="common"></div>
+            </div>
+            <div class="m-card">
+                <div class="m-tools">
+                    <input class="m-input" id="q" type="search" placeholder="Search stock" aria-label="Search stock">
+                    <div class="m-seg" id="seg"><button data-f="all" class="on">All</button><button data-f="low">Low or out</button></div>
+                    <button class="m-btn" id="addItem"><i class="fas fa-plus"></i> Add item</button>
+                </div>
+                <div class="m-scroll"><table class="m-table"><thead><tr><th>Item</th><th>Category</th><th>In stock</th><th>Status</th><th>Value</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+            </div>
+            <div class="m-card">
+                <h3><i class="fas fa-clock-rotate-left"></i> Recent movements</h3>
+                <div class="m-scroll"><table class="m-table"><thead><tr><th>Date</th><th>Item</th><th>Change</th><th>Job</th><th>Note</th></tr></thead><tbody id="log"></tbody></table></div>
+            </div>
+            <dialog id="itemDlg">
+                <form id="itemForm">
+                    <h3 id="itemTitle">Add item</h3>
+                    <label>Item name<input class="m-input" id="iName" required maxlength="80" placeholder="e.g. TP-Link router"></label>
+                    <div class="m-two"><label>Category<select class="m-input" id="iCat"></select></label><label>Unit<input class="m-input" id="iUnit" value="pcs" maxlength="12" placeholder="pcs, m, box"></label></div>
+                    <div class="m-two"><label id="iQtyWrap">Quantity in stock now<input class="m-input" type="number" id="iQty" min="0" step="any" value="0"></label><label>Warn me when this low<input class="m-input" type="number" id="iMin" min="0" step="any" value="1"></label></div>
+                    <label>Cost per unit (R), optional<input class="m-input" type="number" id="iCost" min="0" step="0.01"></label>
+                    <div class="m-actions"><button type="button" class="m-btn ghost" data-close>Cancel</button><button class="m-btn">Save item</button></div>
+                </form>
+            </dialog>
+            <dialog id="mvDlg">
+                <form id="mvForm">
+                    <h3 id="mvTitle"></h3>
+                    <p class="m-hint" id="mvItem"></p>
+                    <label>Quantity<input class="m-input" type="number" id="mvQty" min="0.01" step="any" required></label>
+                    <label id="mvTicketWrap">Used on job<select class="m-input" id="mvTicket"></select></label>
+                    <label>Note (optional)<input class="m-input" id="mvNote" maxlength="120" placeholder="e.g. bought from supplier, or serial number"></label>
+                    <p class="m-error" id="mvErr" role="alert"></p>
+                    <div class="m-actions"><button type="button" class="m-btn ghost" data-close>Cancel</button><button class="m-btn">Save</button></div>
+                </form>
+            </dialog>
+        </div>
+    </div>
+    <div class="m-toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="auth.js"></script>
+    <script src="ndr.js"></script>
+    <script src="stock.js"></script>
+</body>
+</html>

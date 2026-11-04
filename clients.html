@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients - NDR Tech System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="modules.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="image/favicon.png">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <img src="image/ndr-tech-logo.png" alt="NDR Tech logo" class="brand-logo"><h2 class="logo">NDR TECH TECHNICAL DEPARTMENT SYSTEM</h2>
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tickets.html"><i class="fas fa-ticket"></i> Tickets</a></li>
+                <li><a href="repairs.html"><i class="fas fa-screwdriver-wrench"></i> Repairs</a></li>
+                <li><a href="clients.html" class="active"><i class="fas fa-address-book"></i> Clients</a></li>
+                <li><a href="proof.html"><i class="fas fa-camera"></i> Proof of Work</a></li>
+                <li><a href="collection.html"><i class="fas fa-box"></i> Collection</a></li>
+                <li><a href="management.html"><i class="fas fa-tasks"></i> Management</a></li>
+                <li><a href="stock.html"><i class="fas fa-boxes-stacked"></i> Stock</a></li>
+                <li><a href="finance.html"><i class="fas fa-coins"></i> Finance</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="services.html"><i class="fas fa-toolbox"></i> Services</a></li>
+                <li><a href="settings.html"><i class="fas fa-gear"></i> Settings</a></li>
+                <li><a href="developer.html"><i class="fas fa-code"></i> Dev Tools</a></li>
+                <li onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <h1><i class="fas fa-address-book"></i> Clients</h1>
+                <p>Search any client, see their full history and what they owe</p>
+            </div>
+
+            <div class="m-stats" id="summary"></div>
+            <div class="m-card">
+                <div class="m-tools">
+                    <input class="m-input" id="q" type="search" placeholder="Search name, phone, ticket number or device" aria-label="Search clients">
+                    <div class="m-seg" id="seg"><button data-f="all" class="on">All clients</button><button data-f="owing">Owing</button></div>
+                </div>
+                <div class="clients-grid">
+                    <div id="clist" class="clist"></div>
+                    <div id="cdetail"></div>
+                </div>
+            </div>
+            <dialog id="payDlg">
+                <form id="payForm">
+                    <h3>Record payment</h3>
+                    <p class="m-hint" id="payFor"></p>
+                    <label>Amount received (R)<input class="m-input" type="number" id="payAmt" min="0.01" step="0.01" required></label>
+                    <div class="m-actions"><button type="button" class="m-btn ghost" id="payCancel">Cancel</button><button class="m-btn">Save payment</button></div>
+                </form>
+            </dialog>
+        </div>
+    </div>
+    <div class="m-toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="auth.js"></script>
+    <script src="ndr.js"></script>
+    <script src="clients.js"></script>
+</body>
+</html>

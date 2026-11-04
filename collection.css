@@ -1,0 +1,316 @@
+/* ============================================
+   COLLECTION PAGE - PROFESSIONAL DASHBOARD STYLE
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+}
+
+body {
+    background: #f0f2f5;
+}
+
+/* ---------- SIDEBAR (same as dashboard) ---------- */
+.sidebar {
+    width: 260px;
+    background: #0d0d0d;
+    color: white;
+    padding: 24px 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 4px;
+}
+
+.sidebar a {
+    color: #e2e8f0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    transition: all 0.2s;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sidebar a:hover {
+    background: #1e293b;
+    color: white;
+}
+
+.sidebar a.active {
+    background: #0066e6;
+    color: white;
+}
+
+.sidebar li:last-child {
+    margin-top: 28px;
+    padding: 12px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 10px;
+    color: #fca5a5;
+}
+
+.sidebar li:last-child:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+.container {
+    margin-left: 260px;
+    padding: 28px 32px;
+}
+
+.header-section {
+    margin-bottom: 28px;
+}
+
+.header-section h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.header-section p {
+    color: #475569;
+    font-size: 15px;
+}
+
+/* ---------- COLLECTION CARDS ---------- */
+#collectionList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s ease;
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+    border: 1px solid #e9eef3;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    background: #fafcff;
+    padding: 18px 24px;
+    border-bottom: 1px solid #eef2f8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.ticket-number {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ticket-number i {
+    color: #0066e6;
+}
+
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #dcfce7;
+    color: #166534;
+}
+
+.card-body {
+    padding: 20px 24px;
+}
+
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.info-icon {
+    width: 32px;
+    color: #64748b;
+    font-size: 16px;
+    text-align: center;
+}
+
+.info-content {
+    flex: 1;
+}
+
+.info-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #5b6e8c;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: #0f172a;
+    word-break: break-word;
+}
+
+.note-section {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-top: 16px;
+    border-left: 3px solid #f59e0b;
+}
+
+.card-actions {
+    background: white;
+    padding: 16px 24px 20px;
+    border-top: 1px solid #edf2f7;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.btn-collect {
+    background: #f59e0b;
+    color: white;
+}
+.btn-collect:hover {
+    background: #d97706;
+    transform: scale(1.02);
+}
+
+/* Empty state */
+#collectionList > p {
+    background: white;
+    padding: 48px 24px;
+    border-radius: 24px;
+    text-align: center;
+    color: #64748b;
+    max-width: 500px;
+    margin: 40px auto;
+    border: 1px dashed #cbd5e1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 16px;
+    }
+    .container {
+        margin-left: 0;
+        padding: 20px;
+    }
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .info-row {
+        flex-direction: column;
+        gap: 4px;
+    }
+    .info-icon {
+        width: auto;
+    }
+    .card-actions {
+        justify-content: center;
+    }
+    .action-btn {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 16px;
+    }
+    .card-actions {
+        flex-direction: column;
+    }
+}
+
+.btn-print {
+    background: #1a8cff;
+    color: white;
+}
+.btn-print:hover {
+    background: #0066e6;
+    transform: scale(1.02);
+}
+
+/* NDR Tech logo */
+.brand-logo { display: block; width: 100%; max-width: 170px; height: auto; margin: 0 auto 14px; }
+.sidebar h2.logo { justify-content: center; text-align: center; line-height: 1.3; }

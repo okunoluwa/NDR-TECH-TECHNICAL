@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof of Work - NDR Tech System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="modules.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="image/favicon.png">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <img src="image/ndr-tech-logo.png" alt="NDR Tech logo" class="brand-logo"><h2 class="logo">NDR TECH TECHNICAL DEPARTMENT SYSTEM</h2>
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tickets.html"><i class="fas fa-ticket"></i> Tickets</a></li>
+                <li><a href="repairs.html"><i class="fas fa-screwdriver-wrench"></i> Repairs</a></li>
+                <li><a href="clients.html"><i class="fas fa-address-book"></i> Clients</a></li>
+                <li><a href="proof.html" class="active"><i class="fas fa-camera"></i> Proof of Work</a></li>
+                <li><a href="collection.html"><i class="fas fa-box"></i> Collection</a></li>
+                <li><a href="management.html"><i class="fas fa-tasks"></i> Management</a></li>
+                <li><a href="stock.html"><i class="fas fa-boxes-stacked"></i> Stock</a></li>
+                <li><a href="finance.html"><i class="fas fa-coins"></i> Finance</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="services.html"><i class="fas fa-toolbox"></i> Services</a></li>
+                <li><a href="settings.html"><i class="fas fa-gear"></i> Settings</a></li>
+                <li><a href="developer.html"><i class="fas fa-code"></i> Dev Tools</a></li>
+                <li onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <h1><i class="fas fa-camera"></i> Proof of Work</h1>
+                <p>Upload photos after an install or repair and keep them with the job</p>
+            </div>
+
+            <div class="m-card">
+                <h3><i class="fas fa-cloud-arrow-up"></i> Upload photos</h3>
+                <form id="upForm" class="m-upform">
+                    <label>Job (ticket)<select class="m-input" id="upTicket" required></select></label>
+                    <label>Photo type<select class="m-input" id="upKind"><option>After work</option><option>Before work</option><option>Equipment and serial number</option><option>Other</option></select></label>
+                    <label>Note (optional)<input class="m-input" id="upNote" maxlength="140" placeholder="e.g. Router mounted in lounge"></label>
+                    <label>Photos<input class="m-input" type="file" id="upFiles" accept="image/*" multiple required></label>
+                    <button class="m-btn" id="upBtn"><i class="fas fa-upload"></i> Upload</button>
+                </form>
+                <p class="m-hint">Each photo is stamped with the ticket number, date and time. On a phone you can take the photo straight from the camera.</p>
+                <p class="m-error" id="upErr" role="alert"></p>
+            </div>
+            <div class="m-card">
+                <div class="m-tools">
+                    <input class="m-input" id="q" type="search" placeholder="Search by ticket, client or note" aria-label="Search photos">
+                </div>
+                <div id="gallery"></div>
+            </div>
+            <dialog id="viewDlg" class="m-view">
+                <button class="m-x" id="viewClose" aria-label="Close">×</button>
+                <img id="viewImg" alt="">
+                <div class="m-viewbar"><div id="viewMeta"></div><div><a class="m-btn ghost" id="viewDl" download>Download</a> <button class="m-btn danger" id="viewDel">Delete</button></div></div>
+            </dialog>
+        </div>
+    </div>
+    <div class="m-toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="auth.js"></script>
+    <script src="ndr.js"></script>
+    <script src="proof.js"></script>
+</body>
+</html>

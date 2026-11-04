@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance - NDR Tech System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="finance.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/png" href="image/favicon.png">
+</head>
+<body onload="initFinance()">
+    <div class="dashboard">
+        <div class="sidebar">
+            <img src="image/ndr-tech-logo.png" alt="NDR Tech logo" class="brand-logo">
+            <h2 class="logo">NDR TECH TECHNICAL DEPARTMENT SYSTEM</h2>
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tickets.html"><i class="fas fa-ticket"></i> Tickets</a></li>
+                <li><a href="repairs.html"><i class="fas fa-screwdriver-wrench"></i> Repairs</a></li>
+                <li><a href="clients.html"><i class="fas fa-address-book"></i> Clients</a></li>
+                <li><a href="proof.html"><i class="fas fa-camera"></i> Proof of Work</a></li>
+                <li><a href="collection.html"><i class="fas fa-box"></i> Collection</a></li>
+                <li><a href="management.html"><i class="fas fa-tasks"></i> Management</a></li>
+                <li><a href="stock.html"><i class="fas fa-boxes-stacked"></i> Stock</a></li>
+                <li><a href="finance.html" class="active"><i class="fas fa-coins"></i> Finance</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="services.html"><i class="fas fa-toolbox"></i> Services</a></li>
+                <li><a href="settings.html"><i class="fas fa-gear"></i> Settings</a></li>
+                <li><a href="developer.html"><i class="fas fa-code"></i> Dev Tools</a></li>
+                <li onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <h1><i class="fas fa-coins"></i> Financial Management</h1>
+                <p>Track income, expenses, and profits</p>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="finance-summary">
+                <div class="summary-card income">
+                    <i class="fas fa-arrow-up"></i>
+                    <div>
+                        <h3>Total Income</h3>
+                        <p id="totalIncome">R0</p>
+                    </div>
+                </div>
+                <div class="summary-card expense">
+                    <i class="fas fa-arrow-down"></i>
+                    <div>
+                        <h3>Total Expenses</h3>
+                        <p id="totalExpenses">R0</p>
+                    </div>
+                </div>
+                <div class="summary-card profit">
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <h3>Net Profit</h3>
+                        <p id="netProfit">R0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="finance-tabs">
+                <button class="tab-btn active" onclick="switchFinanceTab('income')"><i class="fas fa-plus-circle"></i> Add Income</button>
+                <button class="tab-btn" onclick="switchFinanceTab('expense')"><i class="fas fa-minus-circle"></i> Add Expense</button>
+                <button class="tab-btn" onclick="switchFinanceTab('transactions')"><i class="fas fa-list"></i> Transactions</button>
+                <button class="tab-btn" onclick="switchFinanceTab('reports')"><i class="fas fa-chart-pie"></i> Reports</button>
+            </div>
+
+            <!-- Tab: Add Income (UPDATED with Ticket & Technician) -->
+            <div id="tab-income" class="tab-content active">
+                <div class="finance-card">
+                    <h3><i class="fas fa-plus-circle"></i> Record Income</h3>
+                    <form id="incomeForm">
+                        <div class="form-row">
+                            <select id="incomeTicket" onchange="autoFillIncomeFromTicket()">
+                                <option value="">-- Link to Ticket (optional) --</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <select id="incomeCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Repairs">Repairs</option>
+                                <option value="Device Sales">Device Sales</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Software">Software Installations</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <input type="number" id="incomeAmount" placeholder="Amount (R)" step="0.01" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="text" id="incomeDescription" placeholder="Description (e.g., HP Laptop repair)">
+                            <input type="date" id="incomeDate" required>
+                        </div>
+                        <div class="form-row">
+                            <select id="incomeTechnician">
+                                <option value="">-- Select Technician (optional) --</option>
+                            </select>
+                        </div>
+                        <button type="submit"><i class="fas fa-save"></i> Add Income</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab: Add Expense (unchanged) -->
+            <div id="tab-expense" class="tab-content">
+                <div class="finance-card">
+                    <h3><i class="fas fa-minus-circle"></i> Record Expense</h3>
+                    <form id="expenseForm">
+                        <div class="form-row">
+                            <select id="expenseCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Parts">Parts</option>
+                                <option value="Rent">Rent</option>
+                                <option value="Electricity">Electricity</option>
+                                <option value="Transport">Transport</option>
+                                <option value="Internet">Internet</option>
+                                <option value="Salaries">Salaries</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <input type="number" id="expenseAmount" placeholder="Amount (R)" step="0.01" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="text" id="expenseDescription" placeholder="Description">
+                            <input type="date" id="expenseDate" required>
+                        </div>
+                        <button type="submit"><i class="fas fa-save"></i> Add Expense</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab: Transactions List (unchanged) -->
+            <div id="tab-transactions" class="tab-content">
+                <div class="finance-card">
+                    <h3><i class="fas fa-list"></i> All Transactions</h3>
+                    <div class="transaction-filters">
+                        <select id="transTypeFilter" onchange="loadTransactions()">
+                            <option value="all">All</option>
+                            <option value="income">Income Only</option>
+                            <option value="expense">Expense Only</option>
+                        </select>
+                        <input type="month" id="transMonthFilter" onchange="loadTransactions()">
+                        <button onclick="loadTransactions()"><i class="fas fa-search"></i> Filter</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="transactionsTable">
+                            <thead>
+                                <tr><th>Date</th><th>Type</th><th>Category</th><th>Description</th><th>Amount</th><th>Technician</th><th>Action</th></tr>
+                            </thead>
+                            <tbody id="transactionsBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Reports & Charts (unchanged) -->
+            <div id="tab-reports" class="tab-content">
+                <div class="finance-card">
+                    <h3><i class="fas fa-chart-line"></i> Financial Reports</h3>
+                    <div class="report-filters">
+                        <select id="reportPeriod" onchange="loadReports()">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month" selected>This Month</option>
+                            <option value="year">This Year</option>
+                            <option value="all">All Time</option>
+                        </select>
+                    </div>
+                    <div class="report-stats">
+                        <div class="stat-item">
+                            <span>Income</span>
+                            <strong id="reportIncome">R0</strong>
+                        </div>
+                        <div class="stat-item">
+                            <span>Expenses</span>
+                            <strong id="reportExpenses">R0</strong>
+                        </div>
+                        <div class="stat-item">
+                            <span>Profit</span>
+                            <strong id="reportProfit">R0</strong>
+                        </div>
+                    </div>
+                    <canvas id="financeChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+    <script src="finance.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI;
+}
+
+body{
+background:#f4f7fb;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+.container{
+width:100%;
+display:flex;
+justify-content:center;
+}
+
+.card{
+background:white;
+padding:30px;
+width:500px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+color:#0f172a;
+}
+
+h3{
+margin-top:15px;
+color:#0066e6;
+}
+
+input, textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:1px solid #ddd;
+border-radius:8px;
+outline:none;
+}
+
+textarea{
+height:100px;
+resize:none;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+background:#0066e6;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0052bd;
+}
+
+/* NDR Tech logo */
+.brand-logo { display: block; width: 100%; max-width: 210px; height: auto; margin: 0 auto 14px; background: #0d0d0d; border-radius: 14px; padding: 14px; }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Tools - NDR Tech System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="developer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="image/favicon.png">
+</head>
+<body onload="initDevTools()">
+    <div class="dashboard">
+        <div class="sidebar">
+            <img src="image/ndr-tech-logo.png" alt="NDR Tech logo" class="brand-logo">
+            <h2 class="logo">NDR TECH TECHNICAL DEPARTMENT SYSTEM</h2>
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tickets.html"><i class="fas fa-ticket"></i> Tickets</a></li>
+                <li><a href="repairs.html"><i class="fas fa-screwdriver-wrench"></i> Repairs</a></li>
+                <li><a href="clients.html"><i class="fas fa-address-book"></i> Clients</a></li>
+                <li><a href="proof.html"><i class="fas fa-camera"></i> Proof of Work</a></li>
+                <li><a href="collection.html"><i class="fas fa-box"></i> Collection</a></li>
+                <li><a href="management.html"><i class="fas fa-tasks"></i> Management</a></li>
+                <li><a href="stock.html"><i class="fas fa-boxes-stacked"></i> Stock</a></li>
+                <li><a href="finance.html"><i class="fas fa-coins"></i> Finance</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="services.html"><i class="fas fa-toolbox"></i> Services</a></li>
+                <li><a href="settings.html"><i class="fas fa-gear"></i> Settings</a></li>
+                <li><a href="developer.html" class="active"><i class="fas fa-code"></i> Dev Tools</a></li>
+                <li onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <h1><i class="fas fa-code"></i> Developer Tools</h1>
+                <p>Manage, reset, or delete application data</p>
+            </div>
+
+            <div class="dev-grid">
+                <!-- Tickets -->
+                <div class="dev-card">
+                    <h3><i class="fas fa-ticket-alt"></i> Tickets</h3>
+                    <p><span id="ticketCount">0</span> tickets in database</p>
+                    <button class="btn-warning" onclick="clearTickets()"><i class="fas fa-trash"></i> Delete All Tickets</button>
+                    <button class="btn-info" onclick="viewSampleData('tickets')">View Sample</button>
+                </div>
+
+                <!-- Technicians -->
+                <div class="dev-card">
+                    <h3><i class="fas fa-users"></i> Technicians</h3>
+                    <p><span id="techCount">0</span> technicians registered</p>
+                    <button class="btn-warning" onclick="clearTechnicians()"><i class="fas fa-trash"></i> Delete All Technicians</button>
+                    <button class="btn-info" onclick="viewSampleData('technicians')">View Sample</button>
+                </div>
+
+                <!-- Finance Income -->
+                <div class="dev-card">
+                    <h3><i class="fas fa-arrow-up"></i> Income Records</h3>
+                    <p><span id="incomeCount">0</span> income entries</p>
+                    <button class="btn-warning" onclick="clearIncomes()"><i class="fas fa-trash"></i> Delete All Income</button>
+                </div>
+
+                <!-- Finance Expenses -->
+                <div class="dev-card">
+                    <h3><i class="fas fa-arrow-down"></i> Expense Records</h3>
+                    <p><span id="expenseCount">0</span> expense entries</p>
+                    <button class="btn-warning" onclick="clearExpenses()"><i class="fas fa-trash"></i> Delete All Expenses</button>
+                </div>
+
+                <!-- Company Data -->
+                <div class="dev-card">
+                    <h3><i class="fas fa-building"></i> Company Profile</h3>
+                    <p>Company info, password, preferences</p>
+                    <button class="btn-warning" onclick="clearCompanySettings()"><i class="fas fa-trash"></i> Reset Company Settings</button>
+                </div>
+
+                <!-- Full Reset -->
+                <div class="dev-card danger">
+                    <h3><i class="fas fa-radiation"></i> Full System Reset</h3>
+                    <p><strong>⚠️ WARNING:</strong> Deletes ALL data (tickets, technicians, finance, company, settings)</p>
+                    <button class="btn-danger" onclick="fullReset()"><i class="fas fa-skull-crosswalk"></i> COMPLETE RESET</button>
+                </div>
+            </div>
+
+            <!-- Modal for viewing sample data -->
+            <div id="sampleModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h3>Data Preview</h3>
+                    <pre id="sampleDataPre"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+    <script src="developer.js"></script>
+</body>
+</html>

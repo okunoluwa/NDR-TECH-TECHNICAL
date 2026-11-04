@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - NDR Tech System</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="reports.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/png" href="image/favicon.png">
+</head>
+<body onload="initReports()">
+    <div class="dashboard">
+        <div class="sidebar">
+            <img src="image/ndr-tech-logo.png" alt="NDR Tech logo" class="brand-logo"><h2 class="logo">NDR TECH TECHNICAL DEPARTMENT SYSTEM</h2>
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="tickets.html"><i class="fas fa-ticket"></i> Tickets</a></li>
+                <li><a href="repairs.html"><i class="fas fa-screwdriver-wrench"></i> Repairs</a></li>
+                <li><a href="clients.html"><i class="fas fa-address-book"></i> Clients</a></li>
+                <li><a href="proof.html"><i class="fas fa-camera"></i> Proof of Work</a></li>
+                <li><a href="collection.html"><i class="fas fa-box"></i> Collection</a></li>
+                <li><a href="management.html"><i class="fas fa-tasks"></i> Management</a></li>
+                <li><a href="stock.html"><i class="fas fa-boxes-stacked"></i> Stock</a></li>
+                <li><a href="finance.html"><i class="fas fa-coins"></i> Finance</a></li>
+                <li><a href="reports.html" class="active"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="services.html"><i class="fas fa-toolbox"></i> Services</a></li>
+                <li><a href="settings.html"><i class="fas fa-gear"></i> Settings</a></li>
+                <li><a href="developer.html"><i class="fas fa-code"></i> Dev Tools</a></li>
+                <li onclick="logout()"><i class="fas fa-right-from-bracket"></i> Logout</li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="topbar">
+                <h1><i class="fas fa-chart-pie"></i> Reports & Analytics</h1>
+                <p>Business insights based on your data</p>
+            </div>
+
+            <!-- Report Tabs -->
+            <div class="report-tabs">
+                <button class="tab-btn active" onclick="switchReportTab('repair')"><i class="fas fa-tools"></i> Repair Reports</button>
+                <button class="tab-btn" onclick="switchReportTab('financial')"><i class="fas fa-coins"></i> Financial Reports</button>
+                <button class="tab-btn" onclick="switchReportTab('technician')"><i class="fas fa-users"></i> Technician Reports</button>
+            </div>
+
+            <!-- Tab: Repair Reports -->
+            <div id="tab-repair" class="tab-content active">
+                <div class="report-card">
+                    <h3><i class="fas fa-chart-bar"></i> Repair Summary</h3>
+                    <div class="filter-bar">
+                        <select id="repairPeriod" onchange="loadRepairReports()">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month" selected>This Month</option>
+                            <option value="year">This Year</option>
+                            <option value="all">All Time</option>
+                        </select>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-box"><span>Total Tickets</span><strong id="repairTotal">0</strong></div>
+                        <div class="stat-box"><span>Pending</span><strong id="repairPending">0</strong></div>
+                        <div class="stat-box"><span>Completed</span><strong id="repairCompleted">0</strong></div>
+                        <div class="stat-box"><span>Completion Rate</span><strong id="repairRate">0%</strong></div>
+                    </div>
+                    <div class="charts-row">
+                        <div class="chart-container">
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="deviceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Financial Reports -->
+            <div id="tab-financial" class="tab-content">
+                <div class="report-card">
+                    <h3><i class="fas fa-chart-line"></i> Financial Summary</h3>
+                    <div class="filter-bar">
+                        <select id="financePeriod" onchange="loadFinancialReports()">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month" selected>This Month</option>
+                            <option value="year">This Year</option>
+                            <option value="all">All Time</option>
+                        </select>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-box"><span>Income</span><strong id="financeIncome">R0</strong></div>
+                        <div class="stat-box"><span>Expenses</span><strong id="financeExpense">R0</strong></div>
+                        <div class="stat-box"><span>Profit</span><strong id="financeProfit">R0</strong></div>
+                        <div class="stat-box"><span>Margin</span><strong id="financeMargin">0%</strong></div>
+                    </div>
+                    <canvas id="financeTrendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Tab: Technician Reports -->
+            <div id="tab-technician" class="tab-content">
+                <div class="report-card">
+                    <h3><i class="fas fa-chart-simple"></i> Technician Performance</h3>
+                    <div class="filter-bar">
+                        <select id="techPeriod" onchange="loadTechnicianReports()">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month" selected>This Month</option>
+                            <option value="year">This Year</option>
+                            <option value="all">All Time</option>
+                        </select>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="techTable">
+                            <thead>
+                                <tr><th>Technician</th><th>Repairs Completed</th><th>Revenue Generated</th><th>Avg per Repair</th></tr>
+                            </thead>
+                            <tbody id="techTableBody"></tbody>
+                        </table>
+                    </div>
+                    <canvas id="techChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+    <script src="reports.js"></script>
+</body>
+</html>

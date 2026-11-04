@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tickets - NDR Tech System</title>
+
+<link rel="stylesheet" href="tickets.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="image/favicon.png">
+</head>
+
+<body onload="checkAuth()">
+
+<div class="container">
+
+    <div class="card">
+        <img src="image/ndr-tech-logo.png" alt="NDR Tech logo" class="brand-logo"><h1>
+            <i class="fas fa-ticket"></i>
+            Create Repair Ticket
+        </h1>
+
+        <form id="ticketForm">
+
+            <h3>Customer Details</h3>
+
+            <input type="text" id="customerName" placeholder="Customer Name" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+
+            <h3>Device Details</h3>
+
+            <input type="text" id="deviceType" placeholder="Device Type (Laptop, Phone)" required>
+            <input type="text" id="brand" placeholder="Brand" required>
+            <input type="text" id="model" placeholder="Model" required>
+
+            <textarea id="fault" placeholder="Fault Description" required></textarea>
+
+            <button type="submit">
+                Create Ticket
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="auth.js"></script>
+<script src="tickets.js"></script>
+
+</body>
+</html>
